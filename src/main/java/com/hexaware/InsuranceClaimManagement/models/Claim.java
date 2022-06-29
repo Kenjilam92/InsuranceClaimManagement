@@ -22,7 +22,7 @@ public class Claim {
 	@Column(name="title")
 	private String title;
 	@Column (name="description")
-	private String desc;
+	private String description;
 	@Column(name="status")
 	private String status;
 	@OneToMany(mappedBy="claim")
@@ -89,13 +89,13 @@ public class Claim {
 	}
 
 
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
 
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String desc) {
+		this.description = desc;
 	}
 
 
@@ -121,7 +121,7 @@ public class Claim {
 
 	@Override
 	public String toString() {
-		return "Claim [id=" + id + ", title=" + title + ", desc=" + desc + ", status=" + status + ", docs=" + docs
+		return "Claim [id=" + id + ", title=" + title + ", desc=" + description + ", status=" + status + ", docs=" + docs
 				+ ", url=" + url + ", createdDate=" + createdDate + ", updateDate=" + updateDate + "]";
 	}
 	
