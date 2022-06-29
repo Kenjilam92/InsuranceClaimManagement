@@ -117,5 +117,12 @@ public class Claim {
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Claim [id=" + id + ", title=" + title + ", desc=" + desc + ", status=" + status + ", docs=" + docs
+				+ ", url=" + url + ", createdDate=" + createdDate + ", updateDate=" + updateDate + "]";
+	}
 	
 }

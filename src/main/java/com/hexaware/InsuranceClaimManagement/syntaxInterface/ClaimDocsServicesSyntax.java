@@ -1,11 +1,11 @@
-package com.hexaware.InsuranceClaimManagement.services;
+package com.hexaware.InsuranceClaimManagement.syntaxInterface;
 
 import java.util.List;
 
 import com.hexaware.InsuranceClaimManagement.models.Claim;
 import com.hexaware.InsuranceClaimManagement.models.ClaimDoc;
 
-public interface ClaimDocsServices {
+public interface ClaimDocsServicesSyntax {
 	public void uploadDoc (ClaimDoc doc);
 	public void uploadMultipleDoc (List<ClaimDoc> docs);
 	public void downloadDoc (ClaimDoc doc);
