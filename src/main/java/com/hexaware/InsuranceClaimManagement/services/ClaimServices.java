@@ -1,5 +1,6 @@
 package com.hexaware.InsuranceClaimManagement.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,25 +18,7 @@ public class ClaimServices implements ClaimServicesSyntax {
 	ClaimRespository repo;
 	private String rootAPI = "/api/v1/";
 	
-	@Override
-	public Claim createClaim(Claim c) {
-		Claim newClaim = repo.save(c);
-		newClaim.setUrl(rootAPI+"claim/"+newClaim.getId());
-		return repo.save(newClaim);
-//		return repo.save(c);
-	}
-
-	@Override
-	public Claim updateClaim(Claim c) {
-		return repo.save(c);
-	}
-
-	@Override
-	public List<Claim> deleteClaim(Claim c) {
-		repo.delete(c);
-		return showAllClaim();
-	}
-
+	
 	@Override
 	public List<Claim> showAllClaim() {
 		// TODO Auto-generated method stub
@@ -49,6 +32,35 @@ public class ClaimServices implements ClaimServicesSyntax {
 		
 		return result.isPresent()? result.get() : null;
 	}
+	
+	
+	@Override
+	public Claim createClaim(Claim c) {
+		Claim newClaim = repo.save(c);
+		newClaim.setUrl(rootAPI+"claim/"+newClaim.getId());
+		return repo.save(newClaim);
+	}
+
+	@Override
+	public Claim updateClaim(Claim c) {
+		c.setUpdateDate(LocalDateTime.now());
+		Optional<Claim> select = repo.findById(c.getId());
+		return select.isPresent()? 
+				repo.save( c ) 
+				: null;
+	}
+
+	@Override
+	public List<Claim> deleteClaim(Claim c) {
+		Optional<Claim> select = repo.findById(c.getId());
+		if (select.isPresent()) {
+			repo.delete(select.get());
+			return showAllClaim();
+		}
+		return null;
+	}
+
+	
 
 	@Override
 	public List<Claim> filterClaim(String keywords) {

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,13 +52,14 @@ public class ClaimController implements ClaimControllerSyntax{
 	}
 
 	@PutMapping("claim")
-	public ResponseEntity<Claim> updateClaim(Claim c) {
-		
+	public ResponseEntity<Claim> updateClaim(@Validated @RequestBody Claim c) {
+		System.out.println("##############################");
+		System.out.println(c);
 		return new ResponseEntity<>(ClaimServ.updateClaim(c),HttpStatus.OK);
 	}
 
-	@Override
-	public ResponseEntity<List<Claim>> deletedClaim(Claim c) {
+	@DeleteMapping("claim")
+	public ResponseEntity<List<Claim>> deletedClaim(@Validated @RequestBody Claim c) {
 		
 		return new ResponseEntity<>(ClaimServ.deleteClaim(c),HttpStatus.OK);
 	}
