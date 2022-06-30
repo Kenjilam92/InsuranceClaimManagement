@@ -2,6 +2,7 @@ package com.hexaware.InsuranceClaimManagement.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,9 @@ import com.hexaware.InsuranceClaimManagement.syntaxInterface.ClaimDocControllerS
 @RestController
 public class ClaimDocController implements ClaimDocControllerSyntax{
 	
+	@Autowired
 	private ClaimDocServices DocServ;
+	@Autowired
 	private ClaimServices ClaimServ;
 	
 	public ClaimDocController() {
@@ -34,6 +37,7 @@ public class ClaimDocController implements ClaimDocControllerSyntax{
 		// TODO Auto-generated method stub
 		ClaimDoc newDoc = DocServ.convertingToClaimDoc(doc);
 		newDoc.setClaim(ClaimServ.showClaimById(ClaimId));
+//		newDoc.setClaimUrl(ClaimServ.showClaimById(ClaimId).getUrl());
 		return new ResponseEntity<>(DocServ.storeFile(newDoc),HttpStatus.OK);
 	}
 

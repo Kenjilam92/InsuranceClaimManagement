@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name="ClaimsDocs")
 public class ClaimDoc {
@@ -30,11 +33,13 @@ public class ClaimDoc {
 	private long size;
 	@Column(name="url")
 	private String url;
-	
+//	@Column (name="claim_url")
+//	private String claimUrl;
 	@Lob
 	private byte[] data;
-	@ManyToOne
-	@JoinColumn(name="claim")
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="claim_id")
 	private Claim claim;
 	@CreationTimestamp
 	private LocalDateTime createdDate;
@@ -92,7 +97,7 @@ public class ClaimDoc {
 		this.url = url;
 	}
 
-
+	@JsonIgnore
 	public byte[] getData() {
 		return data;
 	}
@@ -102,9 +107,41 @@ public class ClaimDoc {
 		this.data = data;
 	}
 
+	public String getDataType() {
+		return dataType;
+	}
 
-	public Claim getClaim() {
-		return claim;
+	public void setDataType(String dataType) {
+		this.dataType = dataType;
+	}
+
+//	public String getClaimUrl() {
+//		return claimUrl;
+//	}
+//
+//	public void setClaimUrl(String claimUrl) {
+//		this.claimUrl = claimUrl;
+//	}
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	
+	public String getClaim() {
+		return claim.getUrl();
 	}
 
 
