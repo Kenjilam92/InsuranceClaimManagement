@@ -46,21 +46,16 @@ public class ClaimController implements ClaimControllerSyntax{
 
 	@PostMapping("claim")
 	public ResponseEntity<Claim> createClaim(@Validated @RequestBody Claim c) {
-		System.out.println("##############################");
-		System.out.println(c);
 		return new ResponseEntity<>(ClaimServ.createClaim(c),HttpStatus.OK);
 	}
 
 	@PutMapping("claim")
 	public ResponseEntity<Claim> updateClaim(@Validated @RequestBody Claim c) {
-		System.out.println("##############################");
-		System.out.println(c);
 		return new ResponseEntity<>(ClaimServ.updateClaim(c),HttpStatus.OK);
 	}
 
 	@DeleteMapping("claim")
 	public ResponseEntity<List<Claim>> deletedClaim(@Validated @RequestBody Claim c) {
-		
 		return new ResponseEntity<>(ClaimServ.deleteClaim(c),HttpStatus.OK);
 	}
 	
