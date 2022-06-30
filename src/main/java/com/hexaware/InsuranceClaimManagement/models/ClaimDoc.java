@@ -40,6 +40,11 @@ public class ClaimDoc {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="claim_id")
+	/*
+	 *To solve API loop issue, we need to change the setter of claim
+	 *instead of return whole object we should return the variable that we it stand out
+	 *in this case, I wanted it return the claimUrl  
+	 */
 	private Claim claim;
 	@CreationTimestamp
 	private LocalDateTime createdDate;
