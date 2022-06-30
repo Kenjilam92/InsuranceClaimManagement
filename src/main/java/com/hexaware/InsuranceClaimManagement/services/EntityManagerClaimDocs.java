@@ -14,7 +14,7 @@ import com.hexaware.InsuranceClaimManagement.syntaxInterface.ClaimDocsServicesSy
 
 @Repository
 @Transactional
-public class EntityManagerClaimDocs implements ClaimDocsServicesSyntax{
+public class EntityManagerClaimDocs {
 	
 	@PersistenceContext
 	EntityManager em;
@@ -23,31 +23,27 @@ public class EntityManagerClaimDocs implements ClaimDocsServicesSyntax{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+	
 	public void uploadDoc(ClaimDoc doc) {
 		// TODO Auto-generated method stub
 		em.persist(doc);
 	}
 
-	@Override
 	public void uploadMultipleDoc(List<ClaimDoc> docs) {
 		// TODO Auto-generated method stub
 		docs.stream().forEach(doc -> em.persist(doc));
 	}
 
-	@Override
 	public void downloadDoc(ClaimDoc doc) {
 		// research how to download the file
 		
 	}
 
-	@Override
 	public List<ClaimDoc> showDocByClaim(Claim c) {
 		// we will rely on ClaimRepo to find the Claim  
 		return c.getDocs();
 	}
 
-	@Override
 	public void deleteDoc(ClaimDoc doc) {
 		// TODO Auto-generated method stub
 		em.remove(doc);

@@ -24,12 +24,13 @@ public class ClaimDoc {
 	
 	@Column(name="name")
 	private String name;
-	@Column(name="extension")
-	private String extension;
+	@Column(name="type")
+	private String dataType;
 	@Column(name="size")
-	private int size;
+	private long size;
 	@Column(name="url")
 	private String url;
+	
 	@Lob
 	private byte[] data;
 	@ManyToOne
@@ -44,7 +45,13 @@ public class ClaimDoc {
 	public ClaimDoc() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	public ClaimDoc(String name, String type, long size, byte[] data) {
+		this.name=name;
+		this.dataType = type;
+		this.size = size;
+		this.data=data;
+	}
 
 	public long getId() {
 		return id;
@@ -66,22 +73,12 @@ public class ClaimDoc {
 	}
 
 
-	public String getExtension() {
-		return extension;
-	}
-
-
-	public void setExtension(String extension) {
-		this.extension = extension;
-	}
-
-
-	public int getSize() {
+	public long getSize() {
 		return size;
 	}
 
 
-	public void setSize(int size) {
+	public void setSize(long size) {
 		this.size = size;
 	}
 
