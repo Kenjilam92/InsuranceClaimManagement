@@ -2,8 +2,10 @@ package com.hexaware.InsuranceClaimManagement.services;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +20,7 @@ public class ClaimDocServices implements ClaimDocsServicesSyntax {
 	@Autowired
 	private ClaimDocsRespository repo;
 	
-	private String rootAPI = "api/v1/claim/document/";
+	private String rootAPI = "/api/v1/claim/document/";
 	
 	@Override
 	public ClaimDoc convertingToClaimDoc(MultipartFile doc) {
@@ -51,25 +53,30 @@ public class ClaimDocServices implements ClaimDocsServicesSyntax {
 	}
 
 	@Override
-	public ClaimDoc downloadDoc(String url) {
+	public ClaimDoc getClaimDoc(long id) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	@Override
-	public List<ClaimDoc> showDocByClaim(Claim c) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<ClaimDoc> doc = repo.findById(id);	
+		return doc.isPresent()? doc.get() : null;
 	}
 
 	@Override
-	public List<ClaimDoc> deleteDoc(ClaimDoc doc) {
+	public Claim deleteDoc(ClaimDoc doc) {
 		// TODO Auto-generated method stub
-		return null;
+		Optional<ClaimDoc> select = repo.findById( doc.getId() );
+		if (select.isPresent()) {
+			Claim result = select.get().getClaimObject();
+		
+			repo.delete(select.get());
+			return result;
+		}
+		return  null;
 	}
 
-	
+//	@Override
+//	public List<ClaimDoc> showDocByClaim(Claim c) {
+//		// TODO Auto-generated method stub
+//		
+//		return null;
+//	}
 
 }

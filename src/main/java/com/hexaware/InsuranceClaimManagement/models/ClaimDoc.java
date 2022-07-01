@@ -154,6 +154,9 @@ public class ClaimDoc {
 		this.claim = claim;
 	}
 	
-	
+	@JsonIgnore
+	public Claim getClaimObject () {
+		return this.claim;
+	}
 	
 }
