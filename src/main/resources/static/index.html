@@ -13,31 +13,39 @@
         $(document).ready( function(){
             $(document).on('submit', '#claim-form', function(e) {
                 e.preventDefault()
-                console.log(e);
-                console.log("claim submit");
+                // console.log(e);
+                // console.log("claim submit");
                 const form = $("#claim-form").serializeArray();
-                console.log(form);
-                const newClaim = {};
+                // console.log(form);
+                const newClaim2 = {};
                 $.each(form, function () {
-                    newClaim[this.name] = this.value || "";
+                    newClaim2[this.name] = this.value || "";
                 });
-                                
+                
+				const newClaim = {
+					title: "this is a second test claim",
+					description: "this is a test from HTML page",
+					status: "processing"
+				};         
                 
 
-                console.log(newClaim);
+                // console.log(newClaim);
                 $.ajax({
                     type: "POST",
-                    url: "localhost:8080/api/v1/claim",
-                    data: newClaim, // serializes the form's elements.
-                    contentType:"application/json",
+                    url: "/api/v1/claim",
+                    data: JSON.stringify(newClaim), // serializes the form's elements.
+                    contentType:"application/json; charset=utf-8",
+                    dataType:"json",
                     headers: {
-                        'Access-Control-Allow-Origin': 'localhost:8080'
+                        "Access-Control-Allow-Origin": "http://localhost:8080"
                     },
                     success: function(data)
                     {
+                        console.log("successfull enter the backend");
                         alert(data); // show response from the php script.
                     },
                     error: function(data){
+                        console.log("something went wrong during enter the backend")
                         console.log(data);
                     }
                 });
@@ -61,7 +69,7 @@
             </div>
             <div>
                 <label for="title">desciption:</label>
-            <textarea id="claim-desc"type="text" name="desciption" value="">trying to create a claim on form and post by using ajax then demo deploy on weblogic</textarea>
+            <textarea id="claim-desc"type="text" name="description" value="">trying to create a claim on form and post by using ajax then demo deploy on weblogic</textarea>
 
             </div>
             

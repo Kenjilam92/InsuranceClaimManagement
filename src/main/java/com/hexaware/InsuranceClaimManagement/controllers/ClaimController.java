@@ -21,7 +21,7 @@ import com.hexaware.InsuranceClaimManagement.models.Claim;
 import com.hexaware.InsuranceClaimManagement.services.ClaimServices;
 import com.hexaware.InsuranceClaimManagement.syntaxInterface.ClaimControllerSyntax;
 
-@CrossOrigin(origins="*",maxAge = 3600)
+//@CrossOrigin(origins="*",maxAge = 3600)
 @RestController
 @RequestMapping(value = "/api/v1/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClaimController implements ClaimControllerSyntax{
@@ -47,6 +47,8 @@ public class ClaimController implements ClaimControllerSyntax{
 
 	@PostMapping("claim")
 	public ResponseEntity<Claim> createClaim(@Validated @RequestBody Claim c) {
+		System.out.println("#########################################");
+		System.out.println("AJAX successful");
 		return new ResponseEntity<>(ClaimServ.createClaim(c),HttpStatus.OK);
 	}
 
