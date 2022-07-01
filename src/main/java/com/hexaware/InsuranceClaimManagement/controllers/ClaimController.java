@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,7 @@ import com.hexaware.InsuranceClaimManagement.models.Claim;
 import com.hexaware.InsuranceClaimManagement.services.ClaimServices;
 import com.hexaware.InsuranceClaimManagement.syntaxInterface.ClaimControllerSyntax;
 
-
+@CrossOrigin(origins="*",maxAge = 3600)
 @RestController
 @RequestMapping(value = "/api/v1/", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ClaimController implements ClaimControllerSyntax{

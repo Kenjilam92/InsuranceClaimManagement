@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready( function(){
+            $(document).on('submit', '#claim-form', function(e) {
+                e.preventDefault()
+                console.log(e);
+                console.log("claim submit");
+                const form = $("#claim-form").serializeArray();
+                console.log(form);
+                const newClaim = {};
+                $.each(form, function () {
+                    newClaim[this.name] = this.value || "";
+                });
+                                
+                
+
+                console.log(newClaim);
+                $.ajax({
+                    type: "POST",
+                    url: "localhost:8080/api/v1/claim",
+                    data: newClaim, // serializes the form's elements.
+                    contentType:"application/json",
+                    headers: {
+                        'Access-Control-Allow-Origin': 'localhost:8080'
+                    },
+                    success: function(data)
+                    {
+                        alert(data); // show response from the php script.
+                    },
+                    error: function(data){
+                        console.log(data);
+                    }
+                });
+            return false;
+            });
+        });
+    
+    </script>
+
+    <title>Insurance Claim Management</title>
+</head>
+<body>
+    <div class="container ">
+        <h1>Welcome to Insurance Claim Management</h1>
+        <p class="text-success">this look promissing</p>
+
+        <form action="" id="claim-form" class="col">
+            <div class="row d-flex">
+                <label for="title">title:</label>
+                <input id="claim-title"type="text" name="title" value="this is a test on html">
+            </div>
+            <div>
+                <label for="title">desciption:</label>
+            <textarea id="claim-desc"type="text" name="desciption" value="">trying to create a claim on form and post by using ajax then demo deploy on weblogic</textarea>
+
+            </div>
+            
+            <input id="claim-status"type="hidden" value="processing" name="status">
+
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
