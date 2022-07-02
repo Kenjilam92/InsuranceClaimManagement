@@ -1,6 +1,7 @@
 package com.hexaware.InsuranceClaimManagement.models;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -106,8 +107,9 @@ public class Claim {
 	}
 
 
-	public LocalDateTime getCreatedDate() {
-		return createdDate;
+	public String getCreatedDate() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
+		return updateDate.format(formatter);
 	}
 
 
@@ -116,8 +118,9 @@ public class Claim {
 	}
 
 
-	public LocalDateTime getUpdateDate() {
-		return updateDate;
+	public String getUpdateDate() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
+		return updateDate.format(formatter);
 	}
 
 

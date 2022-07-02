@@ -10,47 +10,91 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready( function(){
-            $(document).on('submit', '#claim-form', function(e) {
-                e.preventDefault()
-                // console.log(e);
-                // console.log("claim submit");
-                const form = $("#claim-form").serializeArray();
-                // console.log(form);
-                const newClaim2 = {};
-                $.each(form, function () {
-                    newClaim2[this.name] = this.value || "";
-                });
-                
-				const newClaim = {
-					title: "this is a second test claim",
-					description: "this is a test from HTML page",
-					status: "processing"
-				};         
-                
 
-                // console.log(newClaim);
-                $.ajax({
-                    type: "POST",
-                    url: "/api/v1/claim",
-                    data: JSON.stringify(newClaim), // serializes the form's elements.
-                    contentType:"application/json; charset=utf-8",
-                    dataType:"json",
-                    headers: {
-                        "Access-Control-Allow-Origin": "http://localhost:8080"
-                    },
-                    success: function(data)
-                    {
-                        console.log("successfull enter the backend");
-                        alert(data); // show response from the php script.
-                    },
-                    error: function(data){
-                        console.log("something went wrong during enter the backend")
-                        console.log(data);
-                    }
-                });
-            return false;
+        function getRequest (urlString)  {
+            return $.ajax({
+                type: "GET",
+                url: urlString
             });
+
+        }
+
+        function postRequest (urlString, json){
+            return $.ajax({
+                type: "POST",
+                url: urlString,
+                contentType:"application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                dataType:"json",
+                headers: {
+                    "Access-Control-Allow-Origin": "http://localhost:8080"
+                }
+            });
+        }
+
+        function claimFormSubmitted (event){
+            event.preventDefault()
+            const form = $("#claim-form").serializeArray();
+            let newClaim = {};
+            $.each(form, function () {
+                newClaim[this.name] = this.value || "";
+            });
+            postRequest("/api/v1/claim",newClaim)
+                .done(e => addingRowClaimToTable(e));
+        }
+
+        function addingRowClaimToTable ( c ){
+            $('#claim-table tbody').append(
+                `<tr id="ClaimRow${c.id}">
+                    
+                    <td class="text-center" value="${c.title}">
+                        <p>${c.title}</p>
+                    </td>
+                    <td class="text-center">
+                        <p>${c.description}</p>
+                    </td>
+                    <td class="text-center">
+                        <p>${c.createdDate}</p>
+                    </td>
+                    <td class="text-center">
+                        <p>${c.updateDate}</p>
+                    </td>
+                    <td class="text-center">
+                        <p>${c.status}</p>
+                    </td>
+                    <td class="text-center">
+                        <nav>
+                            <a class="btn btn-info" href="${c.url}">Detail</a>
+                            <form>
+                                <input type="file">
+                                <button class="btn btn-primary" type="submit"> upload </button>
+                            </form>
+                        </nav>
+                    </td>
+                </tr>`
+            );
+        }
+
+        // <button class="btn btn-danger deleteClaim" 
+                            //         value="${c.id}"
+                            //         onClick="clickedDeleteClaim(this)"
+                            // >
+                            //     Delete
+                            // </button>
+
+        const clickedDeleteClaim = e => {
+            const row = $(`#ClaimRow${e.value}`);
+            console.log(row);
+        }
+
+        $(document).ready( function(){
+            /////////// get claim table
+            getRequest("/api/v1/claims").done(e => e.map( c => addingRowClaimToTable (c)) );       
+            //////////////Form submited
+            $(document).on('submit', '#claim-form', function(e) { claimFormSubmitted(e) });
+
+            $(document).on('click', '.deleteClaim', function(e) { console.log(e) });
+
         });
     
     </script>
@@ -61,7 +105,6 @@
     <div class="container ">
         <h1>Welcome to Insurance Claim Management</h1>
         <p class="text-success">this look promissing</p>
-
         <form action="" id="claim-form" class="col">
             <div class="row d-flex">
                 <label for="title">title:</label>
@@ -69,7 +112,7 @@
             </div>
             <div>
                 <label for="title">desciption:</label>
-            <textarea id="claim-desc"type="text" name="description" value="">trying to create a claim on form and post by using ajax then demo deploy on weblogic</textarea>
+                <textarea id="claim-desc"type="text" name="description" value="">trying to create a claim on form and post by using ajax then demo deploy on weblogic</textarea>
 
             </div>
             
@@ -77,6 +120,20 @@
 
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
+    </div>
+    
+    <div class="container">
+        <table id="claim-table" class="table">
+            <thead>
+                <th>Title</th>
+                <th>Desciption</th>
+                <th>Created Date</th>
+                <th>Updated Date</th>
+                <th>Status</th>
+                <th>Action</th>
+            </thead>
+            <tbody> </tbody>
+        </table>    
     </div>
 </body>
 </html>
