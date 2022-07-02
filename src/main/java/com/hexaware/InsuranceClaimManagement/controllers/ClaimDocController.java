@@ -44,7 +44,8 @@ public class ClaimDocController implements ClaimDocControllerSyntax{
 
 	@PostMapping("document")
 	public ResponseEntity<ClaimDoc> uploadDoc(@RequestParam("file") MultipartFile doc, @RequestParam("ClaimId") long ClaimId ) {
-		// TODO Auto-generated method stub
+		System.out.println("############################################");
+		System.out.println("Uploaded file");
 		ClaimDoc newDoc = DocServ.convertingToClaimDoc(doc);
 		newDoc.setClaim(ClaimServ.showClaimById(ClaimId));
 //		newDoc.setClaimUrl(ClaimServ.showClaimById(ClaimId).getUrl());
@@ -82,3 +83,4 @@ public class ClaimDocController implements ClaimDocControllerSyntax{
 	
 	
 }
+;

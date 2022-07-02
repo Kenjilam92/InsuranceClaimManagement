@@ -47,8 +47,6 @@ public class ClaimController implements ClaimControllerSyntax{
 
 	@PostMapping("claim")
 	public ResponseEntity<Claim> createClaim(@Validated @RequestBody Claim c) {
-		System.out.println("#########################################");
-		System.out.println("AJAX successful");
 		return new ResponseEntity<>(ClaimServ.createClaim(c),HttpStatus.OK);
 	}
 
