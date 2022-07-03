@@ -21,8 +21,9 @@
 
     <div class="container p-3">
         <h1>Insurance Claim Management System</h1>
-        <div class="row"> 
-            <!-- this is the claim list show -->
+        <!-- this is the claim list and form show -->
+        <div class="row" hidden> 
+            
             <div class="container col col-8">
                 <table id="claim-table" class="table">
                     <thead>
@@ -53,12 +54,9 @@
                 </form>
             </div>
         </div>
-    </div>
-    
-
-    <!-- this is the details for claim, showing all the files in here -->
-    <div class="container" id="claim-detail">
-        <div class="row">
+        <!-- this is the details for claim, showing all the files in here -->
+        <div class="row" id="claim-detail" hidden>
+            
             <div class="col-4 border border-primary p-3 border-radius-xl rounded rounded-5">
                 <h2>
                     <img src="./img/folder_icon.png" alt="" style="width: 2rem">
@@ -89,7 +87,10 @@
                     </tbody>
                 </table>
             </div>
+        
         </div>
     </div>
+    
+
 </body>
 </html>
