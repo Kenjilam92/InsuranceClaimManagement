@@ -24,10 +24,11 @@ public class Claim {
 	private long id;
 	@Column(name="title")
 	private String title;
-	@Column (name="description")
+	
+	@Column (name="description",length=1567)
 	private String description;
 	@Column(name="status")
-	private String status;
+	private String status="In Progress";
 	@OneToMany(
 			mappedBy="claim",
 			cascade = CascadeType.ALL, 

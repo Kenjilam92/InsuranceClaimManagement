@@ -47,7 +47,10 @@ public class ClaimDocController implements ClaimDocControllerSyntax{
 		System.out.println("############################################");
 		System.out.println("Uploaded file");
 		ClaimDoc newDoc = DocServ.convertingToClaimDoc(doc);
-		newDoc.setClaim(ClaimServ.showClaimById(ClaimId));
+		Claim claim = ClaimServ.showClaimById(ClaimId);
+		claim.setStatus("Submitted");
+		newDoc.setClaim( claim );
+		ClaimServ.updateClaim(claim);
 //		newDoc.setClaimUrl(ClaimServ.showClaimById(ClaimId).getUrl());
 		return new ResponseEntity<>(DocServ.storeFile(newDoc),HttpStatus.OK);
 	}

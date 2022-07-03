@@ -10,60 +10,86 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <script type="text/javascript" src="./js/ajax.js"> </script>
-    <script type="text/javascript">
+    
+    <script type="text/javascript" src="./js/eventManagement.js"></script>
 
-    </script>
+    <script type="text/javascript" src="./js/claimsTable.js"></script>
 
     <title>Insurance Claim Management</title>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Insurance Claim Management</h1>
-        <p class="text-success">this look promissing</p>
-        <form action="" id="claim-form" class="col">
-            <div class="row d-flex">
-                <label for="title">title:</label>
-                <input id="claim-title"type="text" name="title" value="this is a test on html">
-            </div>
-            <div>
-                <label for="title">desciption:</label>
-                <textarea id="claim-desc"type="text" name="description" value="">trying to create a claim on form and post by using ajax then demo deploy on weblogic</textarea>
 
+    <div class="container p-3">
+        <h1>Insurance Claim Management System</h1>
+        <div class="row"> 
+            <!-- this is the claim list show -->
+            <div class="container col col-8">
+                <table id="claim-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Status</th>
+                            <th>Created Date</th>
+                            <th>Updated Date</th>
+                        </tr>
+                    </thead>
+                    <tbody> 
+                    </tbody>
+                </table>    
             </div>
-            
-            <input id="claim-status"type="hidden" value="processing" name="status">
-
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
+            <div class="col-4 border border-primary p-3 border-radius-xl rounded rounded-5">
+                <form id="claim-form" class="">
+                    <div class="d-flex justify-content-between">
+                        <label for="title">Title:</label>
+                        <input id="claim-title"type="text" name="title" value="Claim case 12456">    
+                    </div>
+                    <div class="d-flex flex-column justify-content-between">
+                        <label for="title">Desciption:</label>
+                        <textarea id="claim-desc"type="text" name="description" rows="8" cols="4">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper dolor vel gravida aliquet. Vestibulum sed ante in metus auctor congue eget ut libero. Duis sit amet odio leo. Mauris eleifend sit amet mi at facilisis. Morbi sed sodales purus. Pellentesque rhoncus rhoncus enim, molestie auctor nulla ornare vitae. Quisque condimentum turpis quis nisi facilisis rhoncus. Nulla viverra euismod pulvinar. Cras posuere pulvinar pulvinar. Proin mattis posuere lacus, ut fringilla quam dictum non.
+                        </textarea>
+                    </div>
+                    <button type="submit" class="btn btn-success m-2">Submit</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <!-- this is the claim list show -->
-    <div class="container">
-        <table id="claim-table" class="table">
-            <thead>
-                <tr>
-                    <th>icon</th>
-                    <th>Title</th>
-                    <th>Created Date</th>
-                    <th>Updated Date</th>
-                    <th>Status</th>
-                    <th>Action</th>    
-                </tr>
-            </thead>
-            <tbody> 
-                <tr>
-                    <td>
-                        <img src="./img/folder_icon.png" alt="" style="width: 2rem">
-                    </td>
-                </tr>
-            </tbody>
-        </table>    
-    </div>
+    
 
     <!-- this is the details for claim, showing all the files in here -->
     <div class="container" id="claim-detail">
-        
-        
-        
+        <div class="row">
+            <div class="col-4 border border-primary p-3 border-radius-xl rounded rounded-5">
+                <h2>
+                    <img src="./img/folder_icon.png" alt="" style="width: 2rem">
+                    ${json.title}
+                </h2>
+                <p id="claim-status">Status: ${json.status}</p>
+                <p>Description:</p>
+                <p id="claim-description">${json.description}</p>
+                <form id="formSubmitClaimDocument" enctype="multipart/form-data">
+                    <label for="file">Upload Document:</label>
+                    <input id="fileDoc" type="file" name="file">
+                    <input id="claim-id" hidden name="ClaimId" value="">
+                    <button class="btn btn-success" type="submit">Upload</button>
+                </form>
+            </div>
+            <div class="col">
+                <table id="doc-table" class="table">
+                    <thead>
+                        <tr>
+                            <th>Documents</th>
+                            <th>Size</th>
+                            <th>Upload date</th>
+                            <th></th>
+                        </tr>    
+                    </thead>
+                    <tbody id="claim-files">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
