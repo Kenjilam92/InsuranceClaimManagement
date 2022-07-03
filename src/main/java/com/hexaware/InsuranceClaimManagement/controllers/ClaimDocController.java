@@ -1,6 +1,7 @@
 package com.hexaware.InsuranceClaimManagement.controllers;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,7 @@ public class ClaimDocController implements ClaimDocControllerSyntax{
 		ClaimDoc newDoc = DocServ.convertingToClaimDoc(doc);
 		Claim claim = ClaimServ.showClaimById(ClaimId);
 		claim.setStatus("Submitted");
+		claim.setUpdateDate( LocalDateTime.now() );
 		newDoc.setClaim( claim );
 		ClaimServ.updateClaim(claim);
 //		newDoc.setClaimUrl(ClaimServ.showClaimById(ClaimId).getUrl());

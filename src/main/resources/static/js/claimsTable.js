@@ -146,6 +146,8 @@ function clearForm (text){
         .prop('selected', false);
 }
 
+
+
 // function removeClaimDetails (){
 //     $('#claim-detail').empty();
 // }

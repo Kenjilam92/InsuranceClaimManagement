@@ -1,6 +1,6 @@
 $(document).ready( function(){
     /////////// get claim table
-    getRequest("http://localhost:8080/api/v1/claims").done(e => e.map( c => addingRowClaimToTable (c)) );       
+    getRequest("http://localhost:8080/api/v1/claims").done(e => addingMultipleClaimToTable(e) );       
     //////////////Form submited
     $(document).on('submit', '#claim-form', function(e) { claimFormSubmitted(e) });
 

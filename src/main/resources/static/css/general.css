@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box !important;
+    padding: 0 !important;
+    margin: 0 ! important;
+    
+}
+
+html {
+    font-size: 100% ;
+    overflow-x: hidden;
+}
+
+body {
+    /* font-family: "Rubik", sans-serif !important; */
+    background-image: url("../img/background-img.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+    background-size: cover;
+    overflow-x: hidden;
+}
+header{
+    /* position: absolute; */
+    width: 100%;
+}
+main {
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+}
+
+section {
+
+    /* visibility: hidden; */
+    margin: 1rem;
+}
+
+.elementBox{
+    background-color: rgba(255,255,255,0.9);
+    margin: 1rem !important;
+    padding: 1rem !important;
+    border: 1px solid red !important;
+    height: 100%;
+    ;
+}
+
