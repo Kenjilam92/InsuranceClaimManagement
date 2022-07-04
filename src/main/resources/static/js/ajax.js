@@ -1,10 +1,10 @@
-
+const domain = window.location.protocol+"//"+window.location.host;
 
 function getRequest (urlString)  {
-    console.log("a get request to "+urlString);
+    console.log("a get request to "+domain+urlString);
     return $.ajax({
         type: "GET",
-        url: urlString
+        url: domain+urlString
     });
 
 }
@@ -12,12 +12,12 @@ function getRequest (urlString)  {
 function postRequest (urlString, json){
     return $.ajax({
         type: "POST",
-        url: urlString,
+        url: domain+urlString,
         contentType:"application/json; charset=utf-8",
         data: JSON.stringify(json),
         dataType:"json",
         headers: {
-            "Access-Control-Allow-Origin": "http://localhost:8080"
+            "Access-Control-Allow-Origin": `${domain}`
         }
     });
 }
@@ -25,14 +25,14 @@ function postRequest (urlString, json){
 function postRequestMultiPart (urlString, formData){
     return $.ajax({
         type: "POST",
-        url: urlString,
+        url: domain+urlString,
         contentType: false,
         processData: false,
         cache: false,
         enctype: 'multipart/form-data',
         data: formData,
         headers: {
-            "Access-Control-Allow-Origin": "http://localhost:8080"
+            "Access-Control-Allow-Origin": `${domain}`
         }
     });
 }

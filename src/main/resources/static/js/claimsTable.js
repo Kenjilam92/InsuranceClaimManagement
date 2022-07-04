@@ -1,4 +1,4 @@
-const domain = "http://localhost:8080";
+// const domain = window.location.host;
 
 function claimFormSubmitted (event){
     event.preventDefault()
@@ -21,12 +21,14 @@ function addingMultipleClaimToTable (claims){
 function addingRowClaimToTable ( c ){
     $('#claim-table tbody').append(
         `<tr id="ClaimRow${c.id}">
-            <td value="${c.title}">
+            <td>
                 <img class="ml-2" 
-                     src="./img/folder_icon.png" 
-                     alt="folder_icon" 
-                     style="width: 2rem"
+                    src="./img/folder_icon.png" 
+                    alt="folder_icon" 
+                    style="width: 2rem"
                 >
+            </td>
+            <td value="${c.title}">
                 <a  class="claimDetailsButton"
                     value="${c.url}"
                     href=""
@@ -53,27 +55,26 @@ function addingMultipleDocToTable( docs ){
 function addingRowDoctoTable (doc) {
     $('#doc-table tbody').append(
         `<tr id="ClaimRow${doc.id}">
+            <td>
+                <img 
+                    class="doc-icon"
+                    src="./img/document_icon.png" 
+                    alt="document_icon" 
+                >
+            </td>
             <td value="${doc.name}">
-                <p>
-                    <img 
-                        class="mr-1"
-                        src="./img/document_icon.png" 
-                        alt="document_icon" 
-                        style="width: 2rem"
-                    >
-                    ${doc.name}
-                </p>
+                ${doc.name}                
             </td>
             
             <td>
-                <p>${doc.size}</p>
+                <p>${byteConverter(doc.size)}</p>
             </td>
             <td>
                 <p>${doc.createdDate}</p>
             </td>
             <td>
                 <nav>
-                    <a class="btn btn-primary"  href="${domain+doc.url}">Download</a>
+                    <a class="btn btn-primary m-1 p-1"  href="${doc.url}">Download</a>
                 </nav>
             </td>
         </tr>`
@@ -83,7 +84,7 @@ function addingRowDoctoTable (doc) {
 function formSubmitDocSubmitted( event ){
     event.preventDefault();
     const form = $("#formSubmitClaimDocument").serializeArray();
-    const api = domain+"/api/v1/claim/document";
+    const api = "/api/v1/claim/document";
     let fdata = new FormData();
     let files = $ ('#fileDoc' )[0].files[0]; 
     $.each(form, function () {
@@ -93,11 +94,11 @@ function formSubmitDocSubmitted( event ){
     fdata.append('file', files);
     fdata
     postRequestMultiPart(api,fdata).done(doc => {
-        getRequest(domain+doc.claim).done( claim => 
+        getRequest(doc.claim).done( claim => 
             renderClaimDetails(claim)
             // addingMultipleDocToTable(claim.docs)
         );
-        getRequest("http://localhost:8080/api/v1/claims")
+        getRequest("/api/v1/claims")
             .done(e => addingMultipleClaimToTable(e) );
     });
         
@@ -106,7 +107,7 @@ function formSubmitDocSubmitted( event ){
 
 function clickedDetailsButton( e ){
     e.preventDefault();
-    const url = domain + $(e.target).attr("value");
+    const url = $(e.target).attr("value");
     getRequest(url).done( a => renderClaimDetails(a))
     ;
 }
@@ -116,14 +117,16 @@ function renderClaimDetails ( json ){
 
     $('#fileDoc').val('');
 
-    $('#claim-detail h2').empty().append(`
+    $('#claim-title-detail').empty().append(`
         <img src="./img/folder_icon.png" alt="" style="width: 2rem">
         ${json.title}
     `);
 
     $('#claim-status').empty().append(`
-        Status: ${json.status}
-    `);
+        ${json.status}
+    `)
+    .addClass(json.status==="Submitted"?["bg-success"]:null)
+    .removeClass(json.status==="Submitted"?["bg-warning","text-dark"]:null) ;
 
     $('#claim-description').empty().append(`
         ${json.description}

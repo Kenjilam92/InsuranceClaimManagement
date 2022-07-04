@@ -1,0 +1,40 @@
+.docGallery {
+    display: inline-flex;
+    flex-wrap: wrap;
+}
+.docBlock{
+    display: inline-block;
+    width: 10rem;
+    height: 10rem;
+    border: 1px dashed white;;
+    padding: 2rem;
+    margin: 3rem;
+}
+.doc-icon-block{
+    width: 3rem;
+}
+
+/* 
+
+<div class="docGalerry">
+                            <div class="docBlock">
+                                <img 
+                                    class="doc-icon-block"
+                                    src="./img/document_icon.png" 
+                                    alt="document_icon" 
+                                >
+                                <p>${doc.name}</p>
+                                <button class="btn btn-primary">Download</button>
+                            </div>
+                            <div class="docBlock">
+                                <img 
+                                    class="doc-icon-block"
+                                    src="./img/document_icon.png" 
+                                    alt="document_icon" 
+                                >
+                                <p>${doc.name}</p>
+                                <button class="btn btn-primary">Download</button>
+                            </div>
+                        </div>
+
+*/
