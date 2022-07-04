@@ -1,7 +1,7 @@
 *{
     box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+    padding: 0,0,0,0;
+    margin: 0,0,0,0;
 }
 
 html {
@@ -9,36 +9,43 @@ html {
     overflow-x: hidden;
 }
 
+header,footer,main, .col, .row,.col, .col-lg-4,.col-lg-5,.col-lg-7,.col-lg-8{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.col-lg-4,.col-lg-5,.col-lg-7,.col-lg-8{
+    
+}
+.mobile-gapfix{
+    margin-bottom:1rem !important;
+}
+
 body {
-    /* font-family: "Rubik", sans-serif !important; */
     background-image: url("../img/background-img.jpeg");
     background-repeat: no-repeat;
     background-position: center;
     background-color: black;
     background-size: cover;
     overflow-x: hidden;
-    /* overflow-y: scroll; */
-    width: 100%;
+    width: 100vw;
     height: 100vh;
-    /* position: relative; */
+    padding: 0;
 }
 header{
-    /* position: absolute;
-    top:0; */
     width: 100%;
     height: 3rem;
 }
 main {
-    /* background-color: rgba(0,0,0,0.5); */
-    width: 100%;
-    /* position: absolute; */
-    /* top: 4rem;   */
-    height: 100%;
-    /* overflow: hidden; */
     
+    width: 100%;
+    height: fit-content;
     display: flex;
     align-items: center;
     justify-content: center;
+    /* padding: 0,0,0,0 !important;
+    margin: 0,0,0,0 !important; */
+    overflow-x: hidden;
 }
 
 #sectionManagement{
@@ -48,18 +55,13 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow-x: hidden;
-    overflow-y: auto;
+    box-sizing: content-box;
+    /* overflow-y: auto; */
 }
 
 section {
-    /* border: 2px solid blue !important; */
-    /* visibility: hidden; */
-    /* margin-bottom: 4rem ; */
+    width: 100%;
     height: fit-content;
-    /* width: 100%; */
-    /* position: absolute; */
-    
 }
 
 
@@ -67,52 +69,42 @@ section {
 #claim-status{
     font-size: 0.8rem;
 }
-/* #claim-detail{
-    display: none;
-} */
+
 
 .elementBox{
-    background-color: rgba(0,0,0,0.7);
+    max-width: 100vw;
+    height: 100%;
+
+
     margin: 1rem;
     padding: 1.5rem;
-    /* border: 1px solid red !important; */
-    width: 100%;
-    /* the width is risky */
-    height: 100% !important;
-    /* min-height: 25vh; */
-    border-top-right-radius: 2rem 2rem;
-    border-bottom-left-radius: 2rem 2rem;
-    color: aliceblue;
     overflow: hidden;
-    overflow-x: auto;
-    /* overflow-y: scroll; */
-}
-
-.col, .col-lg-4, .col-lg-5, .col-lg-7, .col-lg-8 {
-    /* margin: 1rem !important; */
-    padding: 1rem !important;
-    /* min-height: 25%; */
-    height: 100 !important;
+    
+    color: aliceblue;
+    background-color: rgba(0,0,0,0.7);
     /* border: 1px solid red !important; */
+    border-bottom-left-radius: 2rem 2rem;
+    border-top-right-radius: 2rem 2rem;
+
 }
 
-.row  {
-    height:fit-content;
-    /* border: 2px solid blue !important; */
+.element{
+    border-top-right-radius: 1rem 1rem;
+    border-bottom-left-radius: 1rem 1rem;
+    height: 100%;
+    width: 100%;   
+    overflow: auto;
 }
 
 .doc-icon{
     height: 1.5rem ;
-    /* margin-top: 1.5rem; */
+    
 }
 
 a{
     color: turquoise;
 }
-table {
-    /* border-collapse: separate; */
-    border-spacing: 2rem 2rem;
-}
+
 
 #claim-description{
     border: 1px dashed white;
@@ -136,7 +128,7 @@ table {
     margin: 1rem;
 }
 footer{
-    width: 100%;
+    width: 100vw;
     /* position: absolute;
     bottom:0; */
 }

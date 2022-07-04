@@ -1,5 +1,5 @@
 $(document).ready( function(){
-    let currentSection = "#Home";
+    let currentSection = "#claimFormAndTable";
     showElement(currentSection);
     /////////// get claim table
     getRequest("/api/v1/claims").done(e => addingMultipleClaimToTable(e) );       
@@ -11,8 +11,6 @@ $(document).ready( function(){
     $(document).on('click', '.claimDetailsButton', function(e) { 
         clickedDetailsButton(e) 
         swithElement(currentSection,"#claim-detail").then(res => currentSection = res);
-        
-        // console.log(currentSection);
     });
 
     $(document).on('click', '#goBack', function(e) { 

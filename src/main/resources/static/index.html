@@ -27,7 +27,7 @@
     <!-- Menu bar -->
     <!-- <p>Testing the general css</p> -->
     <header id="top-bar" class="d-flex justify-content-between bg-dark text-white p-1 align-items-center">
-        <div class="text-bg-dark text-wrap m-1">Claim Management System</div>
+        <div id="webName" class="text-bg-dark text-wrap m-2 font-weight-bold">Claim Management System</div>
         <nav id=menu class="">
             <button class="m-1 p-1 btn btn-warning" id="homeButtonOnMenu">Home</buton>
             <button class="m-1 p-1 btn btn-info" id="viewClaimsButtonOnMenu">View Claims</button>
@@ -44,12 +44,12 @@
             <!-- instruction -->
             <section id="Home" class=" m-fadeOut hidden">
                 <div class="text-center">
-                    <button id="instructionButton" class="btn btn-lg btn-warning"> Instruction </button>
+                    <button id="instructionButton" class="btn btn-lg btn-warning"> Welcome</button>
                 </div>
             </section>
             <!-- welcomeSite -->
             <section id="welcomeSite" class="row align-items-top m-fadeOut hidden">
-                <div class="elementBox m-1">
+                <div class="elementBox ">
                     <h1 class="text-white">Insurance Claim Management System</h1>
                     <p style="border: 1px dashed white; padding: 1rem;">
                         Quisque egestas bibendum sapien, ut volutpat sem. Sed rutrum nisi vel erat elementum, vel tempor orci semper. Mauris a ante nec libero bibendum tincidunt. Integer venenatis blandit ipsum, non varius magna maximus vitae. Pellentesque lobortis velit vitae nulla facilisis pharetra. Vestibulum facilisis ex at ipsum sagittis, vitae volutpat turpis suscipit. Maecenas sodales, enim a consequat facilisis, nulla nibh tincidunt magna, id ornare nunc orci quis nibh. Fusce pulvinar gravida augue non tristique. Quisque suscipit at est vel convallis. Phasellus pharetra sed lacus quis fringilla. Aenean malesuada bibendum maximus.
@@ -63,64 +63,67 @@
             </section>
             <!-- this is the claim list and form show -->
             <section id="claimFormAndTable" class="m-fadeIn m-fadeOut hidden" > 
-                <div class="row align-items-top justify-content-between self-align-center" >
-                    <div class="col-lg-8">
+                <div class="row align-items-top justify-content-between mobile-gapfix" >
+                    <div class="col col-lg-8 mobile-gapfix">
                         <div class="elementBox ">
-                            <table id="claim-table" class="table table-sm text-center">
-                                <thead class="bg-info p-1">
-                                    <tr>
-                                        <th></th>
-                                        <th>Title</th>
-                                        <th>Status</th>
-                                        <th>Created Date</th>
-                                        <th>Updated Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody> 
-                                </tbody>
-                            </table>    
+                            <div class="element">
+                                <table id="claim-table" class="table table-sm text-center text-nowrap">
+                                    <thead class="bg-info p-1">
+                                        <tr>
+                                            <th></th>
+                                            <th>Title</th>
+                                            <th>Status</th>
+                                            <th>Created Date</th>
+                                            <th>Updated Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody> 
+                                    </tbody>
+                                </table>    
+                            </div>   
                         </div>
-                        
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col col-lg-4 mobile-gapfix">
                         <div class="elementBox">
-                            <form id="claim-form" class="">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <label 
-                                        for="title" 
-                                        class="form-label "
-                                        >Title: 
-                                    </label>
-                                    <input 
-                                        class="form-control ml-3 p-1"
-                                        id="claim-title"
-                                        type="text"
-                                        name="title" 
-                                        value="Claim case 12456"
-                                        >    
-                                </div>
-                                <div class="d-flex flex-column justify-content-between">
-                                    <label 
-                                        class="form-label mt-2 mb-2"
-                                        for="title">Desciption:</label>
-                                    <textarea 
-                                        class="form-control p-2"
-                                        id="claim-desc"
-                                        type="text"
-                                        name="description"
-                                        rows="9" 
-                                        cols="4"
-                                        >Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper dolor vel gravida aliquet. Vestibulum sed ante in metus auctor congue eget ut libero. Duis sit amet odio leo. Mauris eleifend sit amet mi at facilisis. Morbi sed sodales purus. Pellentesque rhoncus rhoncus enim, molestie auctor nulla ornare vitae. Quisque condimentum turpis quis nisi facilisis rhoncus. Nulla viverra euismod pulvinar. Cras posuere pulvinar pulvinar. Proin mattis posuere lacus, ut fringilla quam dictum non.
-                                    </textarea>
-                                </div>
-                                <div class="text-right">
-                                    <button 
-                                        type="submit"
-                                        class="btn btn-primary mt-2 p-2 "
-                                        >Create new Claim
-                                    </button>
-                                </div>
-                            </form>
+                            <!-- <div class="element"> -->
+                                <form id="claim-form" class="">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <label 
+                                            for="title" 
+                                            class="form-label "
+                                            >Title: 
+                                        </label>
+                                        <input 
+                                            class="form-control ml-3 p-1"
+                                            id="claim-title"
+                                            type="text"
+                                            name="title" 
+                                            value="Claim case 12456"
+                                            >    
+                                    </div>
+                                    <div class="d-flex flex-column justify-content-between">
+                                        <label 
+                                            class="form-label mt-2 mb-2"
+                                            for="title">Desciption:</label>
+                                        <textarea 
+                                            class="form-control p-2"
+                                            id="claim-desc"
+                                            type="text"
+                                            name="description"
+                                            rows="9" 
+                                            cols="4"
+                                            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. In semper dolor vel gravida aliquet. Vestibulum sed ante in metus auctor congue eget ut libero. Duis sit amet odio leo. Mauris eleifend sit amet mi at facilisis. Morbi sed sodales purus. Pellentesque rhoncus rhoncus enim, molestie auctor nulla ornare vitae. Quisque condimentum turpis quis nisi facilisis rhoncus. Nulla viverra euismod pulvinar. Cras posuere pulvinar pulvinar. Proin mattis posuere lacus, ut fringilla quam dictum non.
+                                        </textarea>
+                                    </div>
+                                    <div class="text-right">
+                                        <button 
+                                            type="submit"
+                                            class="btn btn-primary mt-2 p-2 "
+                                            >Create new Claim
+                                        </button>
+                                    </div>
+                                </form>
+                            <!-- </div> -->
                         </div>
                     </div>
                 </div>    
@@ -128,61 +131,65 @@
             <!-- this is the details for claim, showing all the files in here -->
             <section id="claim-detail" class="m-fadeOut hidden">
                 <div class="row align-items-top justify-content-between" >
-                    <div class="col-lg-5">
+                    <div class="col col-lg-5 mobile-gapfix">
                         <div class="elementBox">
-                            <h2 id="claim-title-detail">
-                                <img src="./img/folder_icon.png" alt="" style="width: 2rem">
-                                ${json.title}
-                            </h2>
-                            <p>Status: <span id="claim-status" class="badge bg-warning text-dark p-1">${json.status}</span> </p>
-                            <p>Description:</p>
-                            <p id="claim-description">${json.description}</p>
-                            <form id="formSubmitClaimDocument" enctype="multipart/form-data">
-                                <label 
-                                    class="form-label"
-                                    for="file"
-                                    >Upload Document:
-                                </label>
-                                <input 
-                                    class="form-control m-1"
-                                    id="fileDoc" 
-                                    type="file" 
-                                    name="file">
-                                <input 
-                                    id="claim-id" 
-                                    hidden name="ClaimId" 
-                                    >
-                                <div class="text-right">
-                                    <button 
-                                        id="goBack" 
-                                        class="btn btn-secondary mt-2 p-2">
-                                        Go back
-                                    </button>
-                                    <button 
-                                        class="btn btn-primary mt-2 p-2" 
-                                        type="submit"
-                                        >Upload
-                                    </button>
-                                </div>
-                            </form>
+                            <!-- <div class="element"> -->
+                                <h2 id="claim-title-detail">
+                                    <img src="./img/folder_icon.png" alt="" style="width: 2rem">
+                                    ${json.title}
+                                </h2>
+                                <p>Status: <span id="claim-status" class="badge bg-warning text-dark p-1">${json.status}</span> </p>
+                                <p>Description:</p>
+                                <p id="claim-description">${json.description}</p>
+                                <form id="formSubmitClaimDocument" enctype="multipart/form-data">
+                                    <label 
+                                        class="form-label"
+                                        for="file"
+                                        >Upload Document:
+                                    </label>
+                                    <input 
+                                        class="form-control m-1"
+                                        id="fileDoc" 
+                                        type="file" 
+                                        name="file">
+                                    <input 
+                                        id="claim-id" 
+                                        hidden name="ClaimId" 
+                                        >
+                                    <div class="text-right">
+                                        <button 
+                                            id="goBack" 
+                                            class="btn btn-secondary mt-2 p-2">
+                                            Go back
+                                        </button>
+                                        <button 
+                                            class="btn btn-primary mt-2 p-2" 
+                                            type="submit"
+                                            >Upload
+                                        </button>
+                                    </div>
+                                </form>
+                            <!-- </div> -->
                         </div> 
                     </div>
-                    <div class="col-lg-7">
+                    <div class="col col-lg-7 mobile-gapfix">
                         <div class="elementBox ">
-                            <table id="doc-table" class="table table-sm text-center">
-                                <thead thead class="bg-info ">
-                                    <tr>
-                                        <th></th>
-                                        <th>Documents</th>
-                                        <th>Size</th>
-                                        <th>Upload date</th>
-                                        <th></th>
-                                    </tr>    
-                                </thead>
-                                <tbody id="claim-files">
-                                    
-                                </tbody>
-                            </table>
+                            <div class="element">
+                                <table id="doc-table" class="table table-sm text-center">
+                                    <thead thead class="bg-info ">
+                                        <tr>
+                                            <th></th>
+                                            <th>Documents</th>
+                                            <th>Size</th>
+                                            <th>Upload date</th>
+                                            <th></th>
+                                        </tr>    
+                                    </thead>
+                                    <tbody id="claim-files">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
