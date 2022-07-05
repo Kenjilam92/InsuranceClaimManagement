@@ -23,7 +23,7 @@ function addingRowClaimToTable ( c ){
         `<tr id="ClaimRow${c.id}">
             <td>
                 <img class="ml-2" 
-                    src="./img/folder_icon.png" 
+                    src="./images/folder_icon.png" 
                     alt="folder_icon" 
                     style="width: 2rem"
                 >
@@ -58,7 +58,7 @@ function addingRowDoctoTable (doc) {
             <td>
                 <img 
                     class="doc-icon"
-                    src="./img/document_icon.png" 
+                    src="./images/document_icon.png" 
                     alt="document_icon" 
                 >
             </td>
@@ -111,7 +111,7 @@ function renderClaimDetails ( json ){
     $('#fileDoc').val('');
 
     $('#claim-title-detail').empty().append(`
-        <img src="./img/folder_icon.png" alt="" style="width: 2rem">
+        <img src="./images/folder_icon.png" alt="" style="width: 2rem">
         ${json.title}
     `);
 
