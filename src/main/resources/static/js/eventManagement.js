@@ -1,5 +1,5 @@
 $(document).ready( function(){
-    let currentSection = "#claimFormAndTable";
+    let currentSection = "#Home";
     showElement(currentSection);
     /////////// get claim table
     let claims = []
