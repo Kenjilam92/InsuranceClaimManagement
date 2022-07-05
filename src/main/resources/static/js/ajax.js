@@ -1,7 +1,7 @@
 const domain = window.location.protocol+"//"+window.location.host;
 
 function getRequest (urlString)  {
-    console.log("a get request to "+domain+urlString);
+    // console.log("a get request to "+domain+urlString);
     return $.ajax({
         type: "GET",
         url: domain+urlString

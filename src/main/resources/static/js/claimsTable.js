@@ -7,10 +7,10 @@ function claimFormSubmitted (event){
     $.each(form, function () {
         newClaim[this.name] = this.value || "";
     });
-    postRequest("/api/v1/claim",newClaim)
-        .done(e => {addingRowClaimToTable(e)
-            clearForm("#claim-form");
-        });
+    return postRequest("/api/v1/claim",newClaim);
+        // .done(e => {addingRowClaimToTable(e)
+        //     clearForm("#claim-form");
+        // });
 }
 
 function addingMultipleClaimToTable (claims){
@@ -93,14 +93,7 @@ function formSubmitDocSubmitted( event ){
     });
     fdata.append('file', files);
     fdata
-    postRequestMultiPart(api,fdata).done(doc => {
-        getRequest(doc.claim).done( claim => 
-            renderClaimDetails(claim)
-            // addingMultipleDocToTable(claim.docs)
-        );
-        getRequest("/api/v1/claims")
-            .done(e => addingMultipleClaimToTable(e) );
-    });
+    return postRequestMultiPart(api,fdata)
         
     // .fail( e => console.log(e))
 }
@@ -125,8 +118,8 @@ function renderClaimDetails ( json ){
     $('#claim-status').empty().append(`
         ${json.status}
     `)
-    .addClass(json.status==="Submitted"?["bg-success"]:null)
-    .removeClass(json.status==="Submitted"?["bg-warning","text-dark"]:null) ;
+    .addClass(json.status==="Submitted"?["bg-success"]:["bg-warning","text-dark"])
+    .removeClass(json.status==="Submitted"?["bg-warning","text-dark"]:["bg-success"]) ;
 
     $('#claim-description').empty().append(`
         ${json.description}
@@ -141,8 +134,8 @@ function renderClaimDetails ( json ){
     );
 }
 
-function clearForm (text){
-    $(':input',text)
+function clearForm (formIdOrClass){
+    $(':input',formIdOrClass)
         .not(':button, :submit, :reset, :hidden')
         .val('')
         .prop('checked', false)

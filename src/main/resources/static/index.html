@@ -9,18 +9,15 @@
     <link rel="stylesheet" href="./css/effect.css">
     <link rel="stylesheet" href="./css/docBlock.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
     <script type="text/javascript" src="./js/ajax.js"> </script>
-    
     <script type="text/javascript" src="./js/eventManagement.js"></script>
-
     <script type="text/javascript" src="./js/claimsTable.js"></script>
-
     <script type="text/javascript" src="./js/byteConverter.js"></script>
     <script type="text/javascript" src="./js/effect.js"></script>
-    
+    <script type="text/javascript" src="./js/sorting.js"></script>
+    <script type="text/javascript" src="./js/search.js"></script>
+
     <title>Insurance Claim Management</title>
 </head>
 <body>
@@ -67,6 +64,16 @@
                     <div class="col col-lg-8 mobile-gapfix">
                         <div class="elementBox ">
                             <div class="element">
+                                <form id="searchForm" class="d-flex justify-content-end m-2 align-items-center">
+                                    <label class="align-self-end" for="searchContent"style="font-size: 1.2rem">Search: </label>
+                                    <input 
+                                    name="searchContent" 
+                                    
+                                    class="form-control" type="text" style="max-width: 10rem; max-height: 2.1rem;"/>                                   
+                                    <button type ="submit" class="btn btn-sm btn-warning">
+                                        <img src="./img/lookup_icon.png" alt="lookup icon" style="height:1.5rem;">
+                                    </button>
+                                </form>
                                 <table id="claim-table" class="table table-sm text-center text-nowrap">
                                     <thead class="bg-info p-1">
                                         <tr>

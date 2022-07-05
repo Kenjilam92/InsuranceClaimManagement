@@ -24,7 +24,7 @@ function toggleHidden(name){
 function toggleFadeInAndOut(name){
     $(`${name}`).toggleClass("m-fadeIn");
     $(`${name}`).toggleClass("m-fadeOut");
-    console.log("toggled "+name);
+    // console.log("toggled "+name);
 }
 
 function hideElement (elementName) {
